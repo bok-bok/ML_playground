@@ -12,7 +12,7 @@ class Helper:
     def __init__(self):
         pass 
 
-    def create_data(self, data, n_data, noise_str, test_proportion, n_center):
+    def create_data(self, data, n_data, noise_str, test_proportion):
         if noise_str == 'No noise':
             noise = 0
         elif noise_str == 'Little noise':
@@ -30,11 +30,10 @@ class Helper:
             X, y = make_blobs(
                 n_features=2,
                 n_samples=n_data,
-                centers=n_center,
+                centers = 2,
                 cluster_std=  noise * 47 + 0.57,
                 random_state=42,
             )
-           
 
             
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_proportion/100, random_state=42)

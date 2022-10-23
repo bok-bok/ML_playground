@@ -29,20 +29,12 @@ class Ui:
                 
             )
             self.noise = st.selectbox("Amount of noise in data", ("No noise", "Little noise", "A lot of noise"))
-            n_center = None
-            if data == "blobs":
-                n_center=st.number_input(
-                    "Number of center",
-                    1,
-                    5,
-                    2,
-                    1
-                )
+          
 
 
 
             test_size = st.slider("Test data proportion",0,100,20)
-        return data, n_data, self.noise, test_size, n_center
+        return data, n_data, self.noise, test_size 
 
 
     def model_sidebar(self):

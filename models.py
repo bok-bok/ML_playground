@@ -68,15 +68,13 @@ class ModelGenerator:
     def svc_generator(self):
         C = st.number_input("C", 0.01, 2.0, 1.0, 0.01)
         kernel = st.selectbox("kernel", ("rbf", "linear", "poly", "sigmoid"))
-        params = {"C": C, "kernel": kernel}
+        params = {"C": C, "kernel": kernel, "probability":False}
         self.model = SVC(**params)
 
 
 
-    def train_predict_model(self,data, n_center):
+    def train_predict_model(self,data):
         average = 'binary'
-        if n_center is not None and n_center > 2:
-            average = 'weighted'
         X_train, y_train, X_test, y_test = data 
         self.model.fit(X_train, y_train)
         pred = self.model.predict(X_test)
@@ -86,10 +84,8 @@ class ModelGenerator:
         f1 = f1_score(y_test, pred, average = average) 
         return acc, precision, recall, f1 
 
-    def predict(self,X_test, y_test, n_center):
+    def predict(self,X_test, y_test):
         average = 'binary'
-        if n_center is not None and n_center > 2:
-            average = 'weighted'
         pred = self.model.predict(X_test)
         acc = accuracy_score(y_test, pred)
         precision = precision_score(y_test, pred, average=average)

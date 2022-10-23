@@ -22,15 +22,15 @@ class App:
 
 
     def init_sideBar(self):
-        data, n_data, noise, test_size, self.n_center = self.ui.data_sidebar()
-        self.data = self.helper.create_data(data, n_data, noise, test_size, self.n_center)
+        data, n_data, noise, test_size  = self.ui.data_sidebar()
+        self.data = self.helper.create_data(data, n_data, noise, test_size,)
         self.X_train, self.y_train, self.X_test, self.y_test = self.data 
         
         self.model, model_name = self.ui.model_sidebar()
-        accuracy, precision, recall, f1=self.model.train_predict_model(self.data,self.n_center)
+        accuracy, precision, recall, f1=self.model.train_predict_model(self.data)
         self.metrics = [accuracy, precision, recall, f1]
 
-        self.test_metrics = self.model.predict(self.X_train, self.y_train, self.n_center)
+        self.test_metrics = self.model.predict(self.X_train, self.y_train, )
 
     
 
